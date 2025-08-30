@@ -1,0 +1,16 @@
+# VS Code
+.vscode/
+
+# MATLAB
+*.asv
+*.autosave
+*.m~ 
+
+# R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+
