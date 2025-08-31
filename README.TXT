@@ -12,7 +12,6 @@ Contents
 --------
 The repository is organised as follows:
 
-- `reshuffled/`: MATLAB scripts for recreating the original analysis pipeline and running the decoding analyses on the reshuffled datasets. For the reshuffling it Abdoun et al. Python code has been used. Please refer to their repository for getting the necessary Python scripts.
 - `alajulienne/`: MATLAB scripts implementing the top‑down vs. bottom‑up classification approach described in the paper, along with helper functions for time‑generalised decoding.
 - `4and8tones/`: Code for the pilot experiment, including the MATLAB scripts to preprocess and analyse the MEG data.
 
@@ -33,9 +32,13 @@ Prerequisites
 - MATLAB R2020a or later.
 - Sufficient disk space to store the MEG data (≈20 GB for the original dataset). About the same amount if you want to try the analysis on the reshuffled data.
 
+`alajulienne' - New improve analysis of the  Demarchi et al. (2019) dataset.
+----------------
+Here you can find the code reproduce the new hybrid analysis, which was inspired by the Schubert et al. (2023) paper (doi:xxx), here in an time generalized fashion. 
+The full method descritpion and the correspoding code can be found in Topalidis et al. (2025) (doi:xxx)
 
 
-Pilot experiment
+`4and8tones' - Pilot experiment 
 ----------------
 The pilot study used an ordered sequence with a unique randomised frequency order for each participant to eliminate bias in the decoding due to neighbouring frequencies. 
 Here you can find the code reproduce the pilot analysis, it matches 1 to 1 the analysis of Demarchi et al., 2019. 
@@ -45,7 +48,7 @@ Citing this work
 If you use this code or data for your own research, please cite the following reference:
 
 ```
-Demarchi, G., Hartmann, T., Schubert, J., Topalidis, P., et al. (2025). Markov 2.0. Nature Communications Matters Arising xxxyyy
+Demarchi, G., et al. (2025). Markov 2.0. Nature Communications Matters Arising xxxyyy
 
 ```
 
