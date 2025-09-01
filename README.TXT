@@ -4,59 +4,42 @@ Markov 2.0 a.k.a Code for the
 
 Overview
 --------
-This repository contains the code and documentation needed to understand the analyses reported in our follow‑up to Demarchi et al. (2019) (doi:xxxx). 
-The goal is to reanalyse the original dataset, address the criticisms raised by Abdoun et al. and demonstrate a new classification framework that distinguishes top‑down and bottom‑up predictive patterns. 
-It also includes a pilot experiment that implements a bias‑free ordered sequence design.
+This repository contains MATLAB and R scripts for the analyses in Demarchi et al. (2025), including reanalysis of the original dataset 
+and a pilot experiment with bias-free ordered sequences. The code supports time-generalized decoding and top-down vs. bottom-up classification.
 
 Contents
 --------
-The repository is organised as follows:
+- `alajulienne/`: Scripts for the main reanalysis and hybrid Schubert/Demarchi decoding framework.
+    - `om_decode_timegen_trSNDteSND_alajulienne.m`: Main decoding script using time-generalization and hybrid method.
+    - `plot_TG_trSNDteSND_MVPALight_mr_alajulienne.m`: Plots time-generalization matrices and statistical results for the hybrid analysis.
+    - `run_om_decode_timegen_trSNDteSND_alajulienne.m`: SLURM job submission script for batch decoding on a cluster.
+- `4and8tones/`: Scripts for the pilot experiment with the 4/8 tones and tone sequence analysis.
+    - `mtng_decode_timegen_trSNDteSND.m`: Decoding script for pilot data using standard MVPA as in Demarchi et al. 2019.
+    - `plot_mtng_SNDtoSND.m`: Plots time-generalization results for the pilot experiment.
+    - `run_mtng_decode_timegen_trSNDteSND.m`: SLURM job submission script for pilot decoding.
+    - `plot_stat_sequences.R`: R script for statistical analysis of sequence regression data.
 
-- `alajulienne/`: MATLAB scripts implementing the top‑down vs. bottom‑up classification approach described in the paper, along with helper functions for time‑generalised decoding.
-- `4and8tones/`: Code for the pilot experiment, including the MATLAB scripts to preprocess and analyse the MEG data.
 
 Data
 ----
-The original dataset is openly available on Zenodo (version used in Demarchi et al., 2019). Because of its size (≈20 GB), the raw MEG data are not included directly in this repository. 
-To run the analyses you will need to download the data from Zenodo following the link below and extract it into a suitable` directory.
-
-```
-https://doi.org/10.5281/zenodo.3268713
-```
-
-The pilot experiment is available (by now) only upon reasonable request. We plan to release it within a follow up preregisterd study.
-It comprises MEG recordings from 27 participants collected during a seminar course in the summer semester of 2025 using a bias‑free ordered tone design.
+Raw MEG data are available on Zenodo (https://doi.org/10.5281/zenodo.3268713). 
+Pilot data available upon request only now, will be fully shared once published.
 
 Prerequisites
 -------------
-- MATLAB R2020a or later.
-- Sufficient disk space to store the MEG data (≈20 GB for the original dataset). About the same amount if you want to try the analysis on the reshuffled data.
-
-`alajulienne' - New improve analysis of the  Demarchi et al. (2019) dataset.
-----------------
-Here you can find the code reproduce the new hybrid analysis, which was inspired by the Schubert et al. (2023) paper (doi:xxx), here in an time generalized fashion. 
-The full method descritpion and the correspoding code can be found in Topalidis et al. (2025) (doi:xxx)
-
-
-`4and8tones' - Pilot experiment 
-----------------
-The pilot study used an ordered sequence with a unique randomised frequency order for each participant to eliminate bias in the decoding due to neighbouring frequencies. 
-Here you can find the code reproduce the pilot analysis, it matches 1 to 1 the analysis of Demarchi et al., 2019. 
+- MATLAB R2020a or later
+- FieldTrip toolbox
+- MVPA-Light toolbox
+- Sufficient disk space for MEG data (~20 GB)
 
 Citing this work
 ----------------
-If you use this code or data for your own research, please cite the following reference:
-
-```
-Demarchi, G., et al. (2025). Markov 2.0. Nature Communications Matters Arising xxxyyy
-
-```
-
-Please also cite the Zenodo dataset with its DOI if you reuse the data.
+If you use this code or data, please cite:
+Demarchi, G., et al. (2025). Markov 2.0. Nature Communications Matters Arising xxxyyy
 
 License
 -------
-This repository is licensed under the MIT License.
+MIT License
 
 Contact
 -------
