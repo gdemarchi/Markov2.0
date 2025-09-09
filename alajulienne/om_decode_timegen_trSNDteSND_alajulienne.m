@@ -7,10 +7,10 @@ function om_decode_timegen_trSNDteSND_alajulienne(subJ,cfg_in)
 %
 % In summary:
 % - We train a multiclass LDA classifier on tones from the random sequence, excluding tone repetitions (bottom-up classifier).
-% - We test this classifier on tone repetitions from both random and predictable sequences to detect pre-activation of stimulus-specific activity.
-% - we also relabel tone repetitions in the test set to the most likely expected next tone, capturing prediction-related neural activity.
-% - Separately, we train a second classifier (top-down classifier) on forward tone transitions from the predictable sequence (e.g., A/B, B/C).
-% - This top-down classifier is tested on random and predictable most probable tone repetitions to identify top-down representations of expected transitions.
+% - We test this classifier on tone repetitions from both random and increasingly predictable sequences to detect pre-activation of stimulus-specific activity.
+% - We also relabel tone repetitions in the test set to the most likely (mp='most probable') expected next tone, capturing prediction-related neural activity.
+% - Separately, we train a second classifier (top-down classifier) on forward tone transitions from the predictable ('ordered') sequence (e.g., A/B, B/C).
+% - This top-down classifier is tested on random and increasingly more predictable most probable tone repetitions to identify top-down representations of expected transitions.
 
 
 %clear all; close all; restoredefaultpath; matlabrc;
@@ -279,7 +279,8 @@ cfg.preprocessing = 'undersample';
 [accTG_SND_fwOR_srMP, result_acc_fwOR_srMP] = mv_classify_timextime(cfg, data_tl_orFW.trial, data_tl_orFW.trialinfo(:,1), data_tl_mpSR.trial, data_tl_mpSR.trialinfo(:,1));
 [accTG_SND_fwOR_srOR, result_acc_fwOR_srOR] = mv_classify_timextime(cfg, data_tl_orFW.trial, data_tl_orFW.trialinfo(:,1), data_tl_orSR.trial, data_tl_orSR.trialinfo(:,1));
 
-% the same on the relabeled / most probable
+% relabeled / most probable 
+% this is the one needed for the 'top down'/'negative training times' part of the plot
 cfg =  [];
 cfg.classifier = 'multiclass_lda';
 cfg.metric     = 'accuracy';
@@ -300,7 +301,8 @@ cfg.preprocessing = 'undersample';
 [accTG_SND_fwRD_srMP, result_acc_fwRD_srMP] = mv_classify_timextime(cfg, data_tl_rdFW.trial, data_tl_rdFW.trialinfo(:,1), data_tl_mpSR.trial, data_tl_mpSR.trialinfo(:,1));
 [accTG_SND_fwRD_srOR, result_acc_fwRD_srOR] = mv_classify_timextime(cfg, data_tl_rdFW.trial, data_tl_rdFW.trialinfo(:,1), data_tl_orSR.trial, data_tl_orSR.trialinfo(:,1));
 
-% most probable
+% relabeled / most probable 
+% this is the  one needed for the 'bottom up'/'positive training times' part of the plot
 cfg =  [];
 cfg.classifier = 'multiclass_lda';
 cfg.metric     = 'accuracy'% {'accuracy', 'confusion', 'f1', 'mae'}; %  

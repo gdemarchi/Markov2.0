@@ -13,4 +13,5 @@
 .Rproj.user/
 *.Rproj
 
-
+# macOS useless thingy
+.DS_Store

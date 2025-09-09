@@ -7,8 +7,7 @@ addpath('/path/to/fieldtrip'); % Add FieldTrip toolbox
 ft_defaults;
 
 figDir = '/path/to/figures/'; % Directory to save figures
-addpath('/path/to/decoding/functions/'); % Add decoding functions
-addpath('/path/to/markov_revenge/matlab/'); % Add analysis scripts
+addpath('/path/to/markov_revenge/matlab/'); % Add these analysis scripts
 addpath('/path/to/mattols/'); % Add custom tools, e.g smooth2a.m
 
 % List of subjects to process
@@ -102,8 +101,7 @@ gaTG_acc_fwRD_srMPmp = squeeze(mean(TG_acc_SND_fwRD_srMPmp));
 gaTG_acc_fwRD_srORmp = squeeze(mean(TG_acc_SND_fwRD_srORmp));
 
 
-
-%% now plot the TG - cross decoding - one by one manually first
+%% now plot the TG - cross decoding - one by one manually first e.g. gaTG_acc_fwRD_srRDmp
 ft_hastoolbox('brewermap', 1);
 
 imagesc([trainTime{1}(1) trainTime{1}(end)],[trainTime{1}(1) trainTime{1}(end)],gaTG_acc_fwRD_srRDmp);
@@ -119,20 +117,18 @@ clim([.2 .3]);
 barH= colorbar;
 ylabel(barH, 'accuracy');
 set(gca,'YDir','normal');
-title('gaTG_acc_fwOR_srORmp','Interpreter', 'none');
+title('gaTG_acc_fwRD_srRDmp','Interpreter', 'none');
 
 
 %% stat part, 4 entropies
-
-nInterp = 5;
-
-% fwRD
+nInterp = 3; % deafault 3, 5 to beautify ...
+% fwRD a.k.a. 'bottom up' part of the plot
 cond1= TG_acc_SND_fwRD_srRDmp;
 cond2= TG_acc_SND_fwRD_srMMmp;
 cond3= TG_acc_SND_fwRD_srMPmp;
 cond4= TG_acc_SND_fwRD_srORmp;
 
-% fwOR later
+% fwOR a.k.a. 'top down' part of the plot
 % cond1= TG_acc_SND_fwOR_srRDmp;
 % cond2= TG_acc_SND_fwOR_srMMmp;
 % cond3= TG_acc_SND_fwOR_srMPmp;
@@ -191,7 +187,7 @@ nRand = 1000;
 cfg = [];
 cfg.channel          = {'accuracy'};
 cfg.latency          = [-0.3 .3]; % test time
-cfg.frequency        = [-.33 0];
+cfg.frequency        = [-.33 0];  % training time, [-.33 0] for the 'top down', [0 .33] for the 'bottom up'
 cfg.method           = 'montecarlo';
 cfg.statistic        = 'ft_statfun_depsamplesregrT';
 cfg.tail             = 0;
@@ -234,3 +230,4 @@ title(['' '' ],'Interpreter', 'none');
 xlabel('Testing time /s');
 ylabel('Training time /s');
 title('Regression trfwRD -> tested most probable(RD-MM-MP-OR)')
+%title('Regression trfwOR -> tested most probable(RD-MM-MP-OR)')
